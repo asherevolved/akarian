@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "skills": {
+    "brandkit": {
+      "source": "./skills/brandkit",
+      "sourceType": "local"
+    },
+    "design-taste-frontend": {
+      "source": "./skills/design-taste-frontend",
+      "sourceType": "local"
+    },
+    "design-taste-frontend-v1": {
+      "source": "./skills/design-taste-frontend-v1",
+      "sourceType": "local"
+    },
+    "emil-design-eng": {
+      "source": "./skills/emil-design-eng",
+      "sourceType": "local"
+    },
+    "full-output-enforcement": {
+      "source": "./skills/full-output-enforcement",
+      "sourceType": "local"
+    },
+    "gpt-taste": {
+      "source": "./skills/gpt-taste",
+      "sourceType": "local"
+    },
+    "high-end-visual-design": {
+      "source": "./skills/high-end-visual-design",
+      "sourceType": "local"
+    },
+    "image-to-code": {
+      "source": "./skills/image-to-code",
+      "sourceType": "local"
+    },
+    "imagegen-frontend-mobile": {
+      "source": "./skills/imagegen-frontend-mobile",
+      "sourceType": "local"
+    },
+    "imagegen-frontend-web": {
+      "source": "./skills/imagegen-frontend-web",
+      "sourceType": "local"
+    },
+    "industrial-brutalist-ui": {
+      "source": "./skills/industrial-brutalist-ui",
+      "sourceType": "local"
+    },
+    "minimalist-ui": {
+      "source": "./skills/minimalist-ui",
+      "sourceType": "local"
+    },
+    "redesign-existing-projects": {
+      "source": "./skills/redesign-existing-projects",
+      "sourceType": "local"
+    },
+    "stitch-design-taste": {
+      "source": "./skills/stitch-design-taste",
+      "sourceType": "local"
+    }
+  }
+}
