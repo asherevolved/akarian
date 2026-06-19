@@ -80,8 +80,8 @@ export default function Founder() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
 
           {/* Left - Visual */}
-          <div ref={archVisualRef} className="relative lg:sticky lg:top-28 will-change-transform max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:mx-0">
-            <div className="relative aspect-[3/4] arch-top rounded-b-2xl overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.18)]">
+          <div ref={archVisualRef} className="relative lg:sticky lg:top-28 will-change-transform w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:mx-0">
+            <div className="relative aspect-[3/4] min-h-[24rem] w-full arch-top rounded-b-2xl overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.18)]">
               {/* Founder photo */}
               <Image
                 src="/founder.jpg"
@@ -93,11 +93,14 @@ export default function Founder() {
               />
               {/* Subtle gradient overlay at bottom */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-deep-olive/80 via-deep-olive/30 to-transparent p-7 pt-24">
-                <p className="font-sans text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-ivory/60 mb-1">
-                  Founder
-                </p>
                 <p className="font-serif text-2xl text-ivory italic">
-                  The Visionary
+                  J Akshatha
+                </p>
+                <p className="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ivory/80 mt-1.5">
+                  Founder at Akarian
+                </p>
+                <p className="font-sans text-[0.65rem] uppercase tracking-[0.16em] text-ivory/60 mt-0.5">
+                  Toddler Enrichment &amp; Early Learning
                 </p>
               </div>
             </div>

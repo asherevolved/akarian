@@ -31,7 +31,15 @@ export default function Navbar() {
   // Entrance animation
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    if (prefersReduced) {
+      // No animation — make the (CSS opacity-0) nav elements visible immediately,
+      // otherwise the logo, links and CTA stay hidden.
+      gsap.set(
+        [logoRef.current, ctaRef.current, ...(linksRef.current?.querySelectorAll("a") ?? [])],
+        { opacity: 1, x: 0, y: 0 }
+      );
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: E_OUT } });
@@ -220,7 +228,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-deep-olive flex flex-col items-center justify-center gap-7 grain"
+            className="fixed inset-0 z-40 bg-deep-olive flex flex-col items-center justify-start gap-5 grain overflow-y-auto px-6 pt-24 pb-12"
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
@@ -231,13 +239,13 @@ export default function Navbar() {
               alt="Akarian"
               width={200}
               height={55}
-              className="h-12 w-auto mb-2 relative z-10 brightness-0 invert"
+              className="h-10 w-auto mb-1 relative z-10 brightness-0 invert shrink-0"
             />
             {NAV_LINKS.map((link, i) => (
               <motion.a
                 key={link.href}
                 href={resolveHref(link.href)}
-                className="relative z-10 font-serif text-3xl text-ivory/85 hover:text-yellow-amber transition-colors duration-300"
+                className="relative z-10 shrink-0 font-serif text-2xl sm:text-3xl text-ivory/85 hover:text-yellow-amber transition-colors duration-300"
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
@@ -248,7 +256,7 @@ export default function Navbar() {
               </motion.a>
             ))}
             <motion.div
-              className="relative z-10 mt-2"
+              className="relative z-10 mt-2 shrink-0"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4, ease: [0.23, 1, 0.32, 1] }}

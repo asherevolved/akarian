@@ -181,7 +181,15 @@ export default function Hero() {
 
           <div data-hero className="flex gap-8 sm:gap-12">
             {HERO_STATS.map((stat) => (
-              <StatBadge key={stat.label} value={stat.value} label={stat.label} />
+              <div key={stat.label} className="text-center">
+                <p className="font-serif nums text-3xl sm:text-4xl md:text-5xl font-light text-white leading-none">
+                  {stat.value}
+                </p>
+                <span className="mx-auto mt-2 sm:mt-3 mb-2 block h-px w-5 sm:w-6 bg-white/40" />
+                <p className="font-sans text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.2em] text-white/80">
+                  {stat.label}
+                </p>
+              </div>
             ))}
           </div>
 

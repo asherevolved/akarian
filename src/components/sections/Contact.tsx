@@ -125,7 +125,7 @@ export default function Contact() {
               {([
                 {
                   icon: "location",
-                  label: "Location",
+                  label: "Founder's Office",
                   body: (
                     <p className="font-sans text-sm text-sage leading-relaxed">
                       Unit 101, Oxford Towers<br />
