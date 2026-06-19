@@ -77,8 +77,27 @@ export default function Contact() {
     });
   };
 
+  const WHATSAPP_PHONE = "918050659897";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Compose the enquiry as a WhatsApp message and hand off to WhatsApp.
+    const lines = [
+      "Hello AKARIAN, I'd like to enquire about a programme.",
+      "",
+      `Parent: ${formData.parentName}`,
+      `Child's age: ${formData.childAge}`,
+      `Phone: ${formData.phone}`,
+      `Programme: ${formData.interest}`,
+    ];
+    if (formData.message.trim()) {
+      lines.push("", `About my child: ${formData.message.trim()}`);
+    }
+    const text = encodeURIComponent(lines.join("\n"));
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${text}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -129,12 +148,12 @@ export default function Contact() {
                   label: "Instagram",
                   body: (
                     <a
-                      href="https://instagram.com/akarian_whitefield"
+                      href="https://www.instagram.com/akarian_blr/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link-underline font-sans text-sm text-terracotta"
                     >
-                      @akarian_whitefield
+                      @akarian_blr
                     </a>
                   ),
                 },

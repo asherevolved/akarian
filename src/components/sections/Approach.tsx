@@ -72,37 +72,44 @@ export default function Approach() {
 
       <div className="container-wide relative">
         <SectionHeading
-          eyebrow="Our Approach"
-          heading="Familiar Home. Natural Growth."
-          subheading="A new approach for a better future, delivered where a child is most authentically themselves."
+          label="Our Approach"
+          heading="Early sensory nourishment in the space your child already knows"
           align="center"
         />
 
         <div className="mb-12 text-center">
           <p className="font-sans text-sm text-sage leading-relaxed max-w-2xl mx-auto">
-            AKARIAN sessions are home-based by design — not for convenience, but
-            because a child&apos;s world is most open in the environment they know and
-            trust deeply. The home is not a backdrop. It is the method itself.
+            AKARIAN sessions are pre-school mapped and home-based by design — not
+            for convenience, but because a child&apos;s world is most open in the
+            environment they know and trust deeply. The home is not a backdrop. It
+            is the method itself.
           </p>
         </div>
 
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+        <div ref={gridRef} className="mx-auto flex max-w-3xl flex-col gap-4 sm:gap-5">
           {APPROACH_PRINCIPLES.map((principle, i) => (
             <Card
               key={principle.title}
-              className={`approach-card ${i >= 3 ? "lg:col-span-1 lg:col-start-1 md:col-span-1" : ""}`}
-              variant="sandstone"
               id={`approach-${i}`}
+              variant="sandstone"
+              className="approach-card grid grid-cols-[auto_1fr] items-start gap-5 sm:gap-7"
             >
-              <span className="principle-icon mb-4 sm:mb-5 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 arch-top rounded-b-md bg-ivory border border-golden-sand/30 text-terracotta will-change-transform">
-                <Icon name={PRINCIPLE_ICONS[i]} className="w-5 h-5 sm:w-6 sm:h-6" />
-              </span>
-              <h3 className="font-serif text-lg sm:text-xl text-forest-green mb-2 sm:mb-3">
-                {principle.title}
-              </h3>
-              <p className="font-sans text-xs sm:text-sm text-sage leading-relaxed">
-                {principle.description}
-              </p>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="font-serif nums text-2xl text-terracotta sm:text-3xl">
+                  {i + 1}
+                </span>
+                <span className="principle-icon flex h-10 w-10 items-center justify-center arch-top rounded-b-md border border-golden-sand/30 bg-ivory text-terracotta will-change-transform sm:h-12 sm:w-12">
+                  <Icon name={PRINCIPLE_ICONS[i]} className="h-5 w-5 sm:h-6 sm:w-6" />
+                </span>
+              </div>
+              <div>
+                <h3 className="font-serif text-lg text-forest-green sm:text-xl">
+                  {principle.title}
+                </h3>
+                <p className="mt-2 font-sans text-sm leading-relaxed text-sage">
+                  {principle.description}
+                </p>
+              </div>
             </Card>
           ))}
         </div>

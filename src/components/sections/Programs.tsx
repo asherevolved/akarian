@@ -147,11 +147,12 @@ export default function Programs() {
               {/* Fixed-height title+intro block keeps both cards' checklists aligned */}
               <div className="lg:min-h-[10.5rem]">
                 <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-light leading-tight text-forest-green mb-3">
-                  EISE Discovery Session
+                  EISE Preschool Residency
                 </h3>
                 <p className="font-sans text-sm text-sage leading-relaxed">
-                  A gentle first step into the AKARIAN world — guided and unhurried,
-                  designed to explore your child&apos;s sensory landscape.
+                  Sensory development for children in a space they already know —
+                  Early Immersive Sensory Engagement, brought into your child&apos;s
+                  own preschool.
                 </p>
               </div>
 
@@ -175,22 +176,18 @@ export default function Programs() {
           {/* ── Core — featured dark tier (double-bezel) ── */}
           <div className="program-card group relative h-full rounded-t-[3.5rem] rounded-b-[2rem] bg-forest-green/15 ring-1 ring-forest-green/20 p-1.5 will-change-transform" id="program-core">
             <div className="relative flex h-full flex-col overflow-hidden rounded-t-[calc(3.5rem-0.375rem)] rounded-b-[calc(2rem-0.375rem)] bg-forest-green p-7 sm:p-9 md:p-10 grain shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-              <div className="relative z-10 mb-6 flex items-center justify-between gap-3">
+              <div className="relative z-10 mb-6">
                 <span className="inline-flex w-max items-center rounded-full bg-yellow-amber/15 px-3 py-1 font-sans text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-yellow-amber">
                   Core Programme
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-yellow-amber/30 px-3 py-1 font-sans text-[0.55rem] uppercase tracking-[0.18em] text-yellow-amber/90">
-                  <span className="h-1.5 w-1.5 rounded-full bg-yellow-amber pulse-glow" />
-                  Most Complete
                 </span>
               </div>
               <div className="relative z-10 lg:min-h-[10.5rem]">
                 <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-light leading-tight text-ivory mb-3">
-                  EISE Core Programme
+                  EISE In-Home Core Program
                 </h3>
                 <p className="font-sans text-sm text-ivory/65 leading-relaxed">
-                  The full AKARIAN experience — a structured monthly journey of
-                  immersive, sequenced sensory nourishment built for lasting growth.
+                  The most personal sensory education — at your home, with your
+                  child&apos;s own facilitator.
                 </p>
               </div>
 

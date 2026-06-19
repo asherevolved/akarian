@@ -8,7 +8,11 @@ import Pillars from "@/components/sections/Pillars";
 import Programs from "@/components/sections/Programs";
 import Approach from "@/components/sections/Approach";
 import Founder from "@/components/sections/Founder";
+import JournalPreview from "@/components/sections/JournalPreview";
 import Contact from "@/components/sections/Contact";
+
+// Journal preview pulls the latest published posts at request time.
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
@@ -24,6 +28,7 @@ export default function Home() {
         <Programs />
         <Approach />
         <Founder />
+        <JournalPreview />
         <Contact />
       </main>
       <Footer />

@@ -1,105 +1,116 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Card from "@/components/ui/Card";
+import Icon, { type IconName } from "@/components/ui/Icon";
 import { BENEFITS } from "@/lib/constants";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const E_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
+const BENEFIT_ICONS: IconName[] = [
+  "confidence",
+  "esteem",
+  "participation",
+  "performance",
+  "awareness",
+  "potential",
+];
 
 export default function Benefits() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      // Motion only for users who haven't asked for less. Cards are visible
+      // by default in CSS, so nothing is gated behind an animation that
+      // might not fire.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".js-benefit-card");
+        gsap.set(cards, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
 
-    const ctx = gsap.context(() => {
-      if (prefersReduced) return;
-
-      // Heading slides in
-      gsap.fromTo(
-        headRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.8, ease: E_OUT,
-          scrollTrigger: { trigger: headRef.current, start: "top 88%", once: true },
-        }
-      );
-
-      // Cards — alternating row stagger for grid feel
-      const cards = gridRef.current?.querySelectorAll(".benefit-card");
-      if (!cards) return;
-
-      cards.forEach((card, i) => {
-        const col = i % 3;
-        const fromX = col === 0 ? -30 : col === 2 ? 30 : 0;
-
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 48, x: fromX, scale: 0.96 },
-          {
-            opacity: 1, y: 0, x: 0, scale: 1,
-            duration: 0.7,
-            delay: (i % 3) * 0.08,
-            ease: E_OUT,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              once: true,
-            },
-          }
-        );
+        ScrollTrigger.batch(cards, {
+          start: "top 85%",
+          once: true,
+          onEnter: (batch) => {
+            const tl = gsap.timeline();
+            tl.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 0.9,
+              ease: "power3.out",
+              stagger: 0.1,
+              overwrite: true,
+            });
+            const medallions = batch.flatMap((card) =>
+              gsap.utils.toArray<HTMLElement>(card.querySelectorAll(".js-medallion"))
+            );
+            tl.fromTo(
+              medallions,
+              { scale: 0.6, rotate: -8 },
+              { scale: 1, rotate: 0, duration: 0.6, ease: "back.out(2)", stagger: 0.1 },
+              "-=0.65"
+            );
+          },
+        });
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: root }
+  );
 
   return (
-    <section ref={sectionRef} id="benefits" className="section-padding bg-ivory">
-      <div className="container-wide">
-        <div ref={headRef}>
-          <SectionHeading
-            eyebrow="What Your Child Gains"
-            heading="The Gifts of Sensory Nourishment"
-            subheading="When a child's sensory systems are thoughtfully nourished during the 2–6 developmental window, the impact reaches every dimension of who they are, shaping the person they will become for the rest of their life."
-            align="center"
-          />
-        </div>
+    <section id="benefits" className="section-padding bg-ivory">
+      <div ref={root} className="container-wide">
+        <SectionHeading
+          eyebrow="Why It Matters"
+          heading="The gifts of sensory nourishment"
+          subheading="When a child's sensory systems are thoughtfully nourished during the 2–6 developmental window, the impact reaches every dimension of who they are — shaping the person they will become for the rest of their life."
+          align="center"
+        />
 
-        {/* Asymmetric 2-col zig-zag on md, single col on mobile */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6"
-        >
-          {BENEFITS.map((benefit, idx) => (
-            <Card
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+          {BENEFITS.map((benefit, i) => (
+            <article
               key={benefit.number}
-              className={`benefit-card group !bg-sandstone-beige/20 ${
-                idx % 2 !== 0 ? "sm:mt-8" : ""
-              }`}
-              variant="sandstone"
               id={`benefit-${benefit.number}`}
+              className="js-benefit-card group relative rounded-[1.85rem] bg-forest-green/[0.04] ring-1 ring-forest-green/10 p-1.5"
             >
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-serif text-3xl sm:text-4xl font-light text-terracotta leading-none transition-transform duration-300 group-hover:scale-110 inline-block">
-                  {benefit.number}
-                </span>
-                <span className="flex-1 h-px bg-golden-sand/30 group-hover:bg-terracotta/40 transition-colors duration-500" />
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(1.85rem-0.375rem)] bg-gradient-to-b from-ivory to-sandstone-beige/25 p-6 sm:p-7 shadow-[inset_0_1px_1px_rgba(255,255,255,0.65)] transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:shadow-[0_24px_50px_-26px_rgba(47,59,46,0.45)]">
+                {/* Top accent hairline — draws in on hover */}
+                <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-terracotta via-golden-sand to-transparent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+                {/* Warm corner light on hover — radial gradient, no blur filter */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 bg-[radial-gradient(150px_150px_at_88%_-5%,rgba(180,106,40,0.10),transparent_70%)]"
+                />
+
+                {/* Top row: medallion + index */}
+                <div className="mb-6 flex items-start justify-between">
+                  {/* Ring-and-disc medallion */}
+                  <span className="js-medallion relative flex h-14 w-14 items-center justify-center rounded-full bg-ivory ring-1 ring-golden-sand/35">
+                    <span className="absolute inset-[3px] rounded-full bg-sandstone-beige/50 transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-terracotta" />
+                    <Icon
+                      name={BENEFIT_ICONS[i]}
+                      className="relative h-6 w-6 text-terracotta transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-ivory"
+                    />
+                  </span>
+                  <span className="font-serif nums text-[2.6rem] font-light leading-none text-golden-sand/25 select-none transition-colors duration-300 group-hover:text-golden-sand/40">
+                    {benefit.number}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-xl sm:text-[1.4rem] text-forest-green mb-2.5 leading-snug">
+                  {benefit.title}
+                </h3>
+                <p className="font-sans text-[0.84rem] sm:text-sm text-sage leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-              <h3 className="font-serif text-lg sm:text-xl text-forest-green mb-3">
-                {benefit.title}
-              </h3>
-              <p className="font-sans text-sm text-sage leading-relaxed">
-                {benefit.description}
-              </p>
-            </Card>
+            </article>
           ))}
         </div>
       </div>

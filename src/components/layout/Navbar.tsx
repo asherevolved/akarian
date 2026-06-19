@@ -1,15 +1,24 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
+import Image from "next/image";
 import { NAV_LINKS } from "@/lib/constants";
 import Button from "@/components/ui/Button";
-import Mark from "@/components/ui/Mark";
 
 const E_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  // On sub-pages, section anchors must point back to the home route.
+  const resolveHref = (href: string) =>
+    href.startsWith("#") ? (isHome ? href : `/${href}`) : href;
+  const isLinkActive = (href: string) =>
+    href.startsWith("/") ? pathname.startsWith(href) : isHome && active === href;
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
@@ -76,8 +85,9 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  // Scrollspy — highlight the section currently in view
+  // Scrollspy — highlight the section currently in view (home page only)
   useEffect(() => {
+    if (!isHome) return;
     const sections = NAV_LINKS
       .map((l) => document.getElementById(l.href.slice(1)))
       .filter((el): el is HTMLElement => el !== null);
@@ -96,7 +106,9 @@ export default function Navbar() {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  const solid = scrolled || !isHome;
 
   return (
     <>
@@ -110,7 +122,7 @@ export default function Navbar() {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled
+          solid
             ? "bg-ivory/88 backdrop-blur-md border-b border-golden-sand/15 shadow-[0_1px_0_rgba(234,215,185,0.15)]"
             : "bg-transparent border-b border-transparent"
         }`}
@@ -119,25 +131,28 @@ export default function Navbar() {
           {/* Logo */}
           <a
             ref={logoRef}
-            href="#home"
-            className="flex items-center gap-2.5 group opacity-0"
+            href={resolveHref("#home")}
+            className="flex items-center group opacity-0"
             id="nav-logo"
           >
-            <Mark className="w-7 h-7 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
-            <span className="font-serif text-xl md:text-[1.4rem] tracking-[0.22em] text-forest-green transition-colors duration-300 group-hover:text-terracotta">
-              AKARIAN
-              <span className="text-terracotta align-super text-[0.6rem] ml-0.5">®</span>
-            </span>
+            <Image
+              src="/akarian-logo.png"
+              alt="Akarian"
+              width={160}
+              height={44}
+              className="h-[140px] w-auto -ml-6 transition-transform duration-500 group-hover:scale-[1.03]"
+              priority
+            />
           </a>
 
           {/* Desktop links */}
-          <div ref={linksRef} className="hidden lg:flex items-center gap-9">
+          <div ref={linksRef} className="hidden lg:flex items-center gap-6 xl:gap-7">
             {NAV_LINKS.map((link) => {
-              const isActive = active === link.href;
+              const isActive = isLinkActive(link.href);
               return (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   aria-current={isActive ? "true" : undefined}
                   className={`relative inline-block font-sans text-[0.8rem] uppercase tracking-[0.14em] transition-colors duration-300 opacity-0 ${
                     isActive ? "text-terracotta" : "text-deep-olive hover:text-terracotta"
@@ -158,7 +173,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div ref={ctaRef} className="hidden lg:block opacity-0">
-            <Button href="#contact" variant="primary" id="nav-cta">
+            <Button href={resolveHref("#contact")} variant="primary" id="nav-cta">
               Begin
             </Button>
           </div>
@@ -211,11 +226,17 @@ export default function Navbar() {
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 0.38, ease: [0.23, 1, 0.32, 1] }}
           >
-            <Mark className="w-12 h-12 mb-2 relative z-10" />
+            <Image
+              src="/akarian-logo.png"
+              alt="Akarian"
+              width={200}
+              height={55}
+              className="h-12 w-auto mb-2 relative z-10 brightness-0 invert"
+            />
             {NAV_LINKS.map((link, i) => (
               <motion.a
                 key={link.href}
-                href={link.href}
+                href={resolveHref(link.href)}
                 className="relative z-10 font-serif text-3xl text-ivory/85 hover:text-yellow-amber transition-colors duration-300"
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -233,7 +254,7 @@ export default function Navbar() {
               transition={{ delay: 0.5, duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
               <Button
-                href="#contact"
+                href={resolveHref("#contact")}
                 variant="secondary"
                 onClick={() => setMobileOpen(false)}
                 className="!border-ivory/40 !text-ivory hover:!border-yellow-amber hover:!text-yellow-amber"

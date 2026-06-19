@@ -3,9 +3,9 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
-import Mark from "@/components/ui/Mark";
 import { FOUNDER_VALUES } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -81,30 +81,19 @@ export default function Founder() {
 
           {/* Left - Visual */}
           <div ref={archVisualRef} className="relative lg:sticky lg:top-28 will-change-transform max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:mx-0">
-            <div className="relative aspect-[3/4] arch-top rounded-b-2xl bg-gradient-to-b from-sandstone-beige/60 to-ivory-dark overflow-hidden grain border border-golden-sand/30">
-              <div className="absolute inset-0 flex items-center justify-center founder-mark">
-                <Mark className="w-2/5 h-2/5 opacity-80" />
-              </div>
-              {/* Concentric arches */}
-              <svg
-                viewBox="0 0 300 400"
-                className="absolute inset-0 w-full h-full"
-                fill="none"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                {[60, 100, 140].map((r, i) => (
-                  <path
-                    key={i}
-                    d={`M${150 - r} 400V${200} a${r} ${r} 0 0 1 ${2 * r} 0V400`}
-                    stroke="var(--color-golden-sand)"
-                    strokeWidth="1"
-                    opacity={0.18 - i * 0.04}
-                  />
-                ))}
-              </svg>
-              {/* Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-deep-olive/85 to-transparent p-7 pt-20">
-                <p className="font-sans text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-ivory/55 mb-1">
+            <div className="relative aspect-[3/4] arch-top rounded-b-2xl overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.18)]">
+              {/* Founder photo */}
+              <Image
+                src="/founder.jpg"
+                alt="Akarian Founder"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                priority
+              />
+              {/* Subtle gradient overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-deep-olive/80 via-deep-olive/30 to-transparent p-7 pt-24">
+                <p className="font-sans text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-ivory/60 mb-1">
                   Founder
                 </p>
                 <p className="font-serif text-2xl text-ivory italic">

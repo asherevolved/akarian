@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local source assets / scratch (not for repo)
+/hero/
+/new pics/
+/ChatGPT Image*
+/WhatsApp Image*
+/IMG_*.jpeg
+/IMG_*.JPG
+.mcp.json

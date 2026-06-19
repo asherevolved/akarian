@@ -16,27 +16,35 @@
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-bricolage);
 
+  /* Radius scale — one consistent system (maps to rounded-* utilities) */
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+
   /* Custom breakpoints */
   --breakpoint-xs: 400px;
 }
 
 /* ─────────────────────────────────────────────
-   Fluid type & rhythm tokens
-   One smooth scale from 360px phones → 1440px
-   desktops. No stepped jumps; every size
-   interpolates with the viewport.
+   Design tokens
    ───────────────────────────────────────────── */
 :root {
-  --fluid-display: clamp(2.85rem, 1.05rem + 7.7vw, 5.75rem);
-  --fluid-h2:      clamp(1.95rem, 1.15rem + 3.5vw, 3.25rem);
+  /* Fluid type — one smooth scale 360px → 1440px */
+  --fluid-display: clamp(2.85rem, 1.05rem + 7.7vw, 5.5rem);
+  --fluid-h2:      clamp(1.9rem, 1.15rem + 3.3vw, 3.1rem);
   --fluid-h3:      clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
-  --fluid-lead:    clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
+  --fluid-lead:    clamp(1.05rem, 0.98rem + 0.5vw, 1.2rem);
 
   /* Vertical section rhythm */
   --section-y: clamp(4.5rem, 2.5rem + 8vw, 9rem);
 
   /* Fixed-nav offset for in-page anchors */
-  --nav-offset: 5.5rem;
+  --nav-offset: 6.5rem;
+
+  /* The brand arch — a doorway radius, used consistently for framed visuals */
+  --r-arch: 2.75rem;
+
+  /* The single motion curve. Strong ease-out, no bounce. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ─────────────────────────────────────────────
@@ -48,23 +56,20 @@ html {
 
 body {
   background-color: var(--color-ivory);
-  color: var(--color-sage); /* body text role */
+  color: var(--color-deep-olive); /* body text — AA on ivory (9.5:1) */
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* In-page anchors clear the fixed navbar */
 section[id],
 [id] {
   scroll-margin-top: var(--nav-offset);
 }
 
 /* ─────────────────────────────────────────────
-   Accessibility — visible keyboard focus
-   Pointer users see nothing; keyboard users get
-   a clear terracotta ring tinted to the palette.
+   Accessibility
    ───────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-terracotta);
@@ -75,77 +80,54 @@ section[id],
   outline: none;
 }
 
-/* Skip-to-content link for keyboard users */
 .skip-link {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 200;
   padding: 0.6rem 1.1rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   background: var(--color-forest-green);
   color: var(--color-ivory);
   font-family: var(--font-sans);
   font-size: 0.8rem;
   transform: translateY(-150%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s var(--ease-out);
 }
 .skip-link:focus {
   transform: translateY(0);
 }
 
 /* ─────────────────────────────────────────────
-   Semantic text roles (brand colour system)
+   Semantic text roles — all AA-compliant on ivory
    ───────────────────────────────────────────── */
-.text-heading {
-  color: var(--color-forest-green);
-} /* primary headings */
-.text-secondary {
-  color: var(--color-deep-olive);
-} /* secondary text */
-.text-body {
-  color: var(--color-sage);
-} /* body copy */
-.text-meta {
-  color: var(--color-golden-sand);
-} /* metadata, labels */
-.text-highlight {
-  color: var(--color-terracotta);
-} /* CTAs, highlights */
+.text-heading   { color: var(--color-forest-green); }
+.text-secondary { color: var(--color-deep-olive); }
+.text-body      { color: var(--color-deep-olive); }
+.text-meta      { color: var(--color-deep-olive); }
+.text-highlight { color: var(--color-terracotta); }
 
 ::selection {
   background-color: var(--color-terracotta);
   color: var(--color-ivory);
 }
 
-/* Refined typographic defaults */
-.font-serif {
-  letter-spacing: -0.01em;
-}
-
 /* ─────────────────────────────────────────────
    Scrollbar
    ───────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 9px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-ivory-dark);
-}
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: var(--color-ivory-dark); }
 ::-webkit-scrollbar-thumb {
   background: var(--color-golden-sand);
   border-radius: 6px;
   border: 2px solid var(--color-ivory-dark);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-terracotta);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--color-terracotta); }
 
 /* ─────────────────────────────────────────────
    Layout utilities
    ───────────────────────────────────────────── */
 .section-padding {
-  /* Fluid vertical rhythm + horizontal gutter that grows with the viewport */
   padding-top: var(--section-y);
   padding-bottom: var(--section-y);
   padding-left: clamp(1.25rem, 0.5rem + 3.2vw, 6rem);
@@ -153,29 +135,29 @@ section[id],
 }
 
 .container-wide {
-  max-width: 1320px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
 
+/* Cap measure on long prose for readability */
+.measure { max-width: 60ch; }
+
 /* ─────────────────────────────────────────────
-   Brand signature: the ARCH
-   The brand kit's defining motif — used to frame
-   imagery, swatches and cards.
+   Brand arch — the defining motif, applied consistently
    ───────────────────────────────────────────── */
 .arch-top {
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
 }
-.arch-full {
-  border-radius: 9999px 9999px 1.25rem 1.25rem;
+/* Gentle doorway arch for framed visuals and feature panels */
+.arch {
+  border-radius: var(--r-arch) var(--r-arch) var(--radius-card) var(--radius-card);
 }
 
 /* ─────────────────────────────────────────────
-   Paper grain — atmosphere & depth
-   Subtle film-grain overlay so flat fills read
-   as warm paper, not digital blocks.
+   Paper grain — subtle warmth, applied sparingly on dark panels
    ───────────────────────────────────────────── */
 .grain::before {
   content: "";
@@ -183,89 +165,69 @@ section[id],
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.35;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
 }
 
-/* Body grain — applied globally for warmth */
+/* Body grain — very faint global warmth */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.035;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ─────────────────────────────────────────────
-   Hairline rule — editorial dividers
+   Editorial dividers
    ───────────────────────────────────────────── */
 .hairline {
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-golden-sand),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--color-golden-sand), transparent);
   opacity: 0.4;
 }
 
-/* Eyebrow label — recurring brand pattern */
-.eyebrow {
+/* Quiet label — used deliberately, NOT above every section */
+.label {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--color-sage);
+  letter-spacing: 0.22em;
+  color: var(--color-deep-olive);
 }
 
-/* Display heading kerning */
+/* ─────────────────────────────────────────────
+   Typography
+   ───────────────────────────────────────────── */
+.font-serif { letter-spacing: -0.01em; }
+
 .display {
   font-family: var(--font-serif);
   font-weight: 300;
   letter-spacing: -0.02em;
-  line-height: 0.95;
+  line-height: 1.0;
   text-wrap: balance;
 }
 
-/* Fluid type utilities — pair with .display / .font-serif */
-.t-display {
-  font-size: var(--fluid-display);
-}
-.t-h2 {
-  font-size: var(--fluid-h2);
-  line-height: 1.02;
-}
-.t-h3 {
-  font-size: var(--fluid-h3);
-}
-.t-lead {
-  font-size: var(--fluid-lead);
-  line-height: 1.7;
-}
+.t-display { font-size: var(--fluid-display); }
+.t-h2 { font-size: var(--fluid-h2); line-height: 1.04; }
+.t-h3 { font-size: var(--fluid-h3); }
+.t-lead { font-size: var(--fluid-lead); line-height: 1.65; }
 
-/* Tabular figures for stats / data so numbers align */
 .nums {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
 
-h1, h2, h3, h4 {
-  text-wrap: balance;
-}
-
-p {
-  text-wrap: pretty;
-}
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
 
 /* Underline-on-hover for nav/links */
-.link-underline {
-  position: relative;
-}
+.link-underline { position: relative; }
 .link-underline::after {
   content: "";
   position: absolute;
@@ -276,107 +238,86 @@ p {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s var(--ease-out);
 }
 .link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-/* ─────────────────────────────────────────────
-   GSAP animation initial states
-   ───────────────────────────────────────────── */
-.gsap-hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Clip-path reveal — editorial text entrance */
-.clip-reveal {
-  clip-path: inset(0 100% 0 0);
-}
-.clip-reveal-up {
-  clip-path: inset(0 0 100% 0);
-}
-
-/* Split-line overflow mask */
-.line-mask {
-  overflow: hidden;
-}
-
-/* Magnetic button shell */
-.magnetic {
-  display: inline-block;
-  will-change: transform;
-}
-
-/* Scroll-progress bar */
+/* Scroll-progress bar — single subtle terracotta line */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(to right, var(--color-terracotta), var(--color-golden-sand));
+  background: var(--color-terracotta);
   transform-origin: left;
   transform: scaleX(0);
   z-index: 100;
   will-change: transform;
 }
 
-/* Float animation — subtle ambient motion */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-8px) rotate(1deg); }
-  66% { transform: translateY(-4px) rotate(-0.5deg); }
+/* ─────────────────────────────────────────────
+   Blog prose — long-form reading, brand-tuned
+   ───────────────────────────────────────────── */
+.blog-prose {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  color: var(--color-deep-olive);
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
-.float {
-  animation: float 6s ease-in-out infinite;
+.blog-prose > * + * { margin-top: 1.25em; }
+.blog-prose h2,
+.blog-prose h3 {
+  font-family: var(--font-serif);
+  color: var(--color-forest-green);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-top: 1.8em;
 }
-.float-slow {
-  animation: float 9s ease-in-out infinite;
+.blog-prose h2 { font-size: 1.85rem; }
+.blog-prose h3 { font-size: 1.4rem; }
+.blog-prose a {
+  color: var(--color-terracotta);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
-.float-delay {
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 2s;
+.blog-prose strong { color: var(--color-forest-green); font-weight: 600; }
+.blog-prose blockquote {
+  border-left: 3px solid var(--color-golden-sand);
+  padding-left: 1.2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-forest-green);
+}
+.blog-prose ul,
+.blog-prose ol { padding-left: 1.4rem; }
+.blog-prose ul { list-style: disc; }
+.blog-prose ol { list-style: decimal; }
+.blog-prose li { margin-top: 0.4em; }
+.blog-prose img {
+  border-radius: var(--radius-card);
+  width: 100%;
+}
+.blog-prose code {
+  font-family: ui-monospace, monospace;
+  background: var(--color-ivory-dark);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+.blog-prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-golden-sand), transparent);
+  margin: 2.5em 0;
 }
 
-/* Pulse glow */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(180, 106, 40, 0); }
-  50% { box-shadow: 0 0 24px 6px rgba(180, 106, 40, 0.18); }
-}
-.pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-/* Shimmer sweep — for stat badges */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--color-sandstone-beige) 25%,
-    var(--color-ivory) 50%,
-    var(--color-sandstone-beige) 75%
-  );
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* Rotate slow — decorative elements */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-/* Reduced motion */
+/* ─────────────────────────────────────────────
+   Reduced motion
+   ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -384,8 +325,5 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .float, .float-slow, .float-delay, .spin-slow, .shimmer, .pulse-glow {
-    animation: none !important;
   }
 }

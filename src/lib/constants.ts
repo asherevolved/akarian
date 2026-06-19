@@ -4,7 +4,9 @@ export const NAV_LINKS = [
   { label: "Benefits", href: "#benefits" },
   { label: "Pillars", href: "#pillars" },
   { label: "Programs", href: "#programs" },
+  { label: "Approach", href: "#approach" },
   { label: "Founder", href: "#founder" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -51,9 +53,9 @@ export const EISE_BREAKDOWN = [
 export const BENEFITS = [
   {
     number: "01",
-    title: "Genuine Confidence",
+    title: "Body-Mind Circuiting",
     description:
-      "A child who knows their body and trusts their senses moves through the world with a quiet, unshakeable self-assurance, from within.",
+      "When body signals and mind response are in sync, a child acts with clarity, calm, and real inner confidence.",
   },
   {
     number: "02",
@@ -87,71 +89,85 @@ export const BENEFITS = [
   },
 ];
 
-export const PILLARS = [
+export const PILLARS: {
+  number: string;
+  name: string;
+  description: string;
+  image: string | null;
+}[] = [
   {
     number: "01",
     name: "Tactile",
     description: "The language of touch, the body's first intelligence",
+    image: "/pillars/tactile.jpg",
   },
   {
     number: "02",
     name: "Vestibular",
     description: "Balance and movement, the scaffolding for focus",
+    image: "/pillars/vestibular.jpg",
   },
   {
     number: "03",
     name: "Proprioceptive",
     description: "Where the body begins and ends in space",
+    image: "/pillars/proprioceptive.jpg",
   },
   {
     number: "04",
     name: "Visual",
     description: "Tracking, depth, and pattern, the foundation of learning",
+    image: "/pillars/visual.jpg",
   },
   {
     number: "05",
     name: "Auditory",
     description: "Sound and rhythm, the architecture of communication",
+    image: "/pillars/auditory.jpg",
   },
   {
     number: "06",
     name: "Olfactory",
     description: "Scent as memory anchor and emotional regulator",
+    image: "/pillars/olfactory.jpg",
   },
   {
     number: "07",
     name: "Gustatory",
     description: "Oral awareness and mindful body connection",
+    image: "/pillars/gustatory.jpg",
   },
   {
     number: "08",
-    name: "Interoception",
-    description: "Internal signals, the root of all emotional wisdom",
+    name: "Interoceptive (Internal Body Awareness)",
+    description: "Senses signals from inside the body. Helps recognize hunger, thirst, fullness, heartbeat, pain, temperature, and emotions.",
+    image: "/pillars/interoception.jpg",
   },
 ];
 
 export const DISCOVERY_INCLUDES = [
-  "Single 90-minute in-person session",
-  "Guided sensory immersion and exploration",
-  "Movement and body awareness journey",
-  "Detailed observation insights shared with the family",
-  "Parent guidance and home continuity notes",
+  "24 sessions across 12 weeks, two per week",
+  "Small groups of four to five children",
+  "All eight sensory pathways covered",
+  "Plant-based, earth-driven materials only",
+  "Hosted inside your child's own preschool",
+  "Select partner preschools only",
 ];
 
 export const CORE_INCLUDES = [
-  "Four weekly immersive sessions (90 minutes each)",
-  "One parent-integrated experiential session",
-  "Personalised sensory nourishment profile per child",
-  "Weekly parent education and progress debrief",
-  "Home nourishment guide and daily practice notes",
-  "Monthly developmental progress review",
+  "Led by founder Akshatha, every session",
+  "One-on-one, or siblings together",
+  "12 weeks, entirely in your own home",
+  "Built around your child's pace and profile",
+  "Your home becomes the sensory classroom",
+  "Limited to one or two families at a time",
 ];
 
 export const APPROACH_PRINCIPLES = [
   {
-    title: "Home-Based and Safe",
+    title: "Selected Preschool Residence",
     description:
-      "Sessions take place within the child's own environment, where trust is natural, comfort is real, and sensory nourishment reaches its deepest.",
+      "We work at selected preschools, by invitation only. Small groups. Nervous system focus that builds the foundation for future academic readiness.",
   },
   {
     title: "Parent as Partner",
@@ -194,8 +210,8 @@ export const FOUNDER_VALUES = [
 ];
 
 export const PROGRAMME_INTERESTS = [
-  "EISE Discovery Session",
-  "EISE Core Programme",
+  "EISE Preschool Residency",
+  "EISE In-Home Core Program",
   "I would like to learn more",
 ];
 
