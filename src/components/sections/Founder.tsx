@@ -20,10 +20,7 @@ export default function Founder() {
   const markRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const ctx = gsap.context(() => {
-      if (prefersReduced) return;
 
       // Arch visual — slide from left
       gsap.fromTo(
@@ -111,26 +108,37 @@ export default function Founder() {
             <SectionHeading eyebrow="About the Founder" heading="A Vision for the Next Generation" />
 
             <blockquote className="f-animate font-serif text-lg italic text-terracotta/80 border-l-2 border-terracotta/40 pl-4 mb-8 leading-relaxed will-change-transform">
-              &ldquo;I built AKARIAN because I believe every child deserves a
-              beginning that truly honours the depth of who they already are.&rdquo;
+              &ldquo;A child&apos;s potential doesn&apos;t need fixing. It needs
+              nourishment.&rdquo;
             </blockquote>
 
             <div className="space-y-4 mb-10">
               <p className="f-animate font-sans text-base text-sage leading-relaxed will-change-transform">
-                AKARIAN was founded on an absolute belief: that early childhood is
-                not a problem to be managed — it is a gift to be nourished with
-                intention, science, and care.
+                Akshatha founded Akarian because she noticed something that nobody
+                else was addressing. In her years of working with preschools and
+                healthcare professionals, she saw children struggling not because
+                they were difficult, but because their nervous systems were unmet.
+                She saw parents confused about why their child couldn&apos;t sit
+                still or listen or regulate emotion, when the real issue
+                wasn&apos;t behaviour, it was foundation.
               </p>
               <p className="f-animate font-sans text-base text-sage leading-relaxed will-change-transform">
-                The EISE framework was developed as a precise and deliberate new
-                approach to the critical 2–6 developmental window, structured,
-                scientifically grounded, home-based, and designed to break the
-                conventional patterns that have defined early childhood for generations.
+                She saw the gap. And instead of talking about it, she built something.
               </p>
               <p className="f-animate font-sans text-base text-sage leading-relaxed will-change-transform">
-                The vision is clear and unwavering: give every young child the
-                sensory nourishment they deserve at the moment when it matters most,
-                and watch them grow — with confidence — into the fullest version of themselves.
+                The EISE framework came from watching what actually works with
+                children. Not theory. Not trends. What actually shifts a nervous
+                system when given the right input, at the right time, in the right way.
+              </p>
+              <p className="f-animate font-sans text-base text-sage leading-relaxed will-change-transform">
+                Today, every session at Akarian carries her conviction: a
+                child&apos;s potential doesn&apos;t need fixing. It needs
+                nourishment. And when their sensory foundation is solid, everything
+                else follows, learning becomes easier, emotions become manageable,
+                confidence becomes natural.
+              </p>
+              <p className="f-animate font-sans text-base text-sage leading-relaxed will-change-transform">
+                That&apos;s why she&apos;s here. That&apos;s what Akarian is.
               </p>
             </div>
 

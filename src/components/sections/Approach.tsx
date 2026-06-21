@@ -22,10 +22,7 @@ export default function Approach() {
   const quoteRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const ctx = gsap.context(() => {
-      if (prefersReduced) return;
 
       const cards = gridRef.current?.querySelectorAll(".approach-card");
       if (cards) {

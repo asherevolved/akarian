@@ -12,9 +12,6 @@ export default function Marquee() {
     const track = trackRef.current;
     if (!track) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
     const totalWidth = track.scrollWidth / 2;
 
     animRef.current = gsap.to(track, {

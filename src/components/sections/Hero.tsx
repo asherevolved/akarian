@@ -30,7 +30,6 @@ export default function Hero() {
   // ── Crossfade ──────────────────────────────────────────────────────
   const goTo = useCallback((next: number) => {
     if (isAnimating.current) return;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     isAnimating.current = true;
 
     const outEl = slidesRef.current[currentRef.current];
@@ -41,14 +40,12 @@ export default function Hero() {
     gsap.set(outEl, { zIndex: 1 });
 
     // Ken Burns on incoming
-    if (!prefersReduced) {
-      const img = inEl.querySelector("img");
-      if (img) gsap.fromTo(img, { scale: 1.07 }, { scale: 1, duration: INTERVAL / 1000 + 1.2, ease: "none" });
-    }
+    const img = inEl.querySelector("img");
+    if (img) gsap.fromTo(img, { scale: 1.07 }, { scale: 1, duration: INTERVAL / 1000 + 1.2, ease: "none" });
 
     gsap.to(inEl, {
       opacity: 1,
-      duration: prefersReduced ? 0.01 : 1.1,
+      duration: 1.1,
       ease: "power2.inOut",
       onComplete: () => {
         gsap.set(outEl, { opacity: 0, zIndex: 0 });
@@ -77,7 +74,6 @@ export default function Hero() {
 
   // ── Entrance animation for text ────────────────────────────────────
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>("[data-hero]");
       gsap.set(items, { opacity: 0, y: 28 });
@@ -88,7 +84,6 @@ export default function Hero() {
 
   // Ken Burns on first slide
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const img = slidesRef.current[0]?.querySelector("img");
     if (img) gsap.fromTo(img, { scale: 1.07 }, { scale: 1, duration: INTERVAL / 1000 + 1.2, ease: "none" });
   }, []);
@@ -154,10 +149,12 @@ export default function Hero() {
             <span className="italic text-yellow-amber">Young Ones</span>
           </h1>
 
-          <p data-hero className="t-lead mb-8 max-w-xl font-sans text-ivory/80">
-            Early Immersive Sensory Engagement — structured nourishment for
-            children aged 2–6, delivered within the home, where they are most
-            authentically themselves.
+          <p data-hero className="t-lead mb-8 max-w-xl font-sans text-ivory font-medium [text-shadow:0_1px_12px_rgba(0,0,0,0.35)]">
+            Between 1 and 5, your child is learning to live in their own body.
+            To feel. To regulate. To move through the world with ease.
+            Consciously designed materials, small groups, deep sensory play.
+            Not enrichment. Nourishment. The foundation for a lifetime of
+            confidence.
           </p>
 
           <figure data-hero className="mb-9 max-w-lg">

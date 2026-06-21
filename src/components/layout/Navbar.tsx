@@ -30,17 +30,6 @@ export default function Navbar() {
 
   // Entrance animation
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      // No animation — make the (CSS opacity-0) nav elements visible immediately,
-      // otherwise the logo, links and CTA stay hidden.
-      gsap.set(
-        [logoRef.current, ctaRef.current, ...(linksRef.current?.querySelectorAll("a") ?? [])],
-        { opacity: 1, x: 0, y: 0 }
-      );
-      return;
-    }
-
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: E_OUT } });
 

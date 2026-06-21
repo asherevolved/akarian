@@ -28,10 +28,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const ctx = gsap.context(() => {
-      if (prefersReduced) return;
 
       // Info side
       const infoItems = infoRef.current?.querySelectorAll(".info-item");

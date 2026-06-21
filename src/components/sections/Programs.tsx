@@ -87,10 +87,7 @@ export default function Programs() {
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const ctx = gsap.context(() => {
-      if (prefersReduced) return;
 
       const cards = cardsRef.current?.querySelectorAll(".program-card");
       if (cards?.[0]) {

@@ -81,34 +81,29 @@ export default function Pillars() {
 
   useGSAP(
     () => {
-      // Marquee only runs when motion is allowed. The static grid below is the
-      // reduced-motion fallback (toggled purely in CSS).
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const el = track.current;
-        if (!el) return;
+      const el = track.current;
+      if (!el) return;
 
-        // The track holds two identical copies of the pillar set, so shifting
-        // by exactly -50% lands on the start of the second copy — seamless loop.
-        const loop = gsap.to(el, {
-          xPercent: -50,
-          ease: "none",
-          duration: 40,
-          repeat: -1,
-        });
-
-        // Pause on hover so a card can be read; resume on leave.
-        const pause = () => gsap.to(loop, { timeScale: 0, duration: 0.4 });
-        const play = () => gsap.to(loop, { timeScale: 1, duration: 0.4 });
-        el.addEventListener("pointerenter", pause);
-        el.addEventListener("pointerleave", play);
-
-        return () => {
-          el.removeEventListener("pointerenter", pause);
-          el.removeEventListener("pointerleave", play);
-          loop.kill();
-        };
+      // The track holds two identical copies of the pillar set, so shifting
+      // by exactly -50% lands on the start of the second copy — seamless loop.
+      const loop = gsap.to(el, {
+        xPercent: -50,
+        ease: "none",
+        duration: 40,
+        repeat: -1,
       });
+
+      // Pause on hover so a card can be read; resume on leave.
+      const pause = () => gsap.to(loop, { timeScale: 0, duration: 0.4 });
+      const play = () => gsap.to(loop, { timeScale: 1, duration: 0.4 });
+      el.addEventListener("pointerenter", pause);
+      el.addEventListener("pointerleave", play);
+
+      return () => {
+        el.removeEventListener("pointerenter", pause);
+        el.removeEventListener("pointerleave", play);
+        loop.kill();
+      };
     },
     { scope: root }
   );
@@ -133,9 +128,9 @@ export default function Pillars() {
         />
       </div>
 
-      {/* Marquee — motion users. Edge fade via overlay strips (NOT mask-image —
-          a mask on this wrapper would disable backdrop-filter on the glass cards). */}
-      <div className="relative z-10 hidden motion-safe:block overflow-hidden" aria-hidden>
+      {/* Marquee. Edge fade via overlay strips (NOT mask-image — a mask on this
+          wrapper would disable backdrop-filter on the glass cards). */}
+      <div className="relative z-10 overflow-hidden" aria-hidden>
         <div ref={track} className="flex w-max gap-4 sm:gap-5 px-4 sm:px-5 py-2">
           {marqueeItems.map((pillar, i) => (
             <div
@@ -152,17 +147,6 @@ export default function Pillars() {
         {/* Left/right fade strips matching the section background */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#f1ece0] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#f1ece0] to-transparent" />
-      </div>
-
-      {/* Static grid — reduced-motion fallback. */}
-      <div className="container-wide motion-safe:hidden">
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 items-stretch">
-          {PILLARS.map((pillar, i) => (
-            <div key={pillar.number} id={`pillar-${pillar.number}`}>
-              <PillarCard pillar={pillar} icon={PILLAR_ICONS[i]} />
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

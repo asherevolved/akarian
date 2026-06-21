@@ -24,39 +24,33 @@ export default function Benefits() {
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
-      // Motion only for users who haven't asked for less. Cards are visible
-      // by default in CSS, so nothing is gated behind an animation that
-      // might not fire.
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const cards = gsap.utils.toArray<HTMLElement>(".js-benefit-card");
-        gsap.set(cards, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
+      const cards = gsap.utils.toArray<HTMLElement>(".js-benefit-card");
+      gsap.set(cards, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
 
-        ScrollTrigger.batch(cards, {
-          start: "top 85%",
-          once: true,
-          onEnter: (batch) => {
-            const tl = gsap.timeline();
-            tl.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: 0.9,
-              ease: "power3.out",
-              stagger: 0.1,
-              overwrite: true,
-            });
-            const medallions = batch.flatMap((card) =>
-              gsap.utils.toArray<HTMLElement>(card.querySelectorAll(".js-medallion"))
-            );
-            tl.fromTo(
-              medallions,
-              { scale: 0.6, rotate: -8 },
-              { scale: 1, rotate: 0, duration: 0.6, ease: "back.out(2)", stagger: 0.1 },
-              "-=0.65"
-            );
-          },
-        });
+      ScrollTrigger.batch(cards, {
+        start: "top 85%",
+        once: true,
+        onEnter: (batch) => {
+          const tl = gsap.timeline();
+          tl.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.1,
+            overwrite: true,
+          });
+          const medallions = batch.flatMap((card) =>
+            gsap.utils.toArray<HTMLElement>(card.querySelectorAll(".js-medallion"))
+          );
+          tl.fromTo(
+            medallions,
+            { scale: 0.6, rotate: -8 },
+            { scale: 1, rotate: 0, duration: 0.6, ease: "back.out(2)", stagger: 0.1 },
+            "-=0.65"
+          );
+        },
       });
     },
     { scope: root }
