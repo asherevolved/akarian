@@ -57,7 +57,7 @@ export default function Benefits() {
   );
 
   return (
-    <section id="benefits" className="section-padding bg-ivory">
+    <section id="benefits" className="section-padding pt-0 -mt-px bg-ivory">
       <div ref={root} className="container-wide">
         <SectionHeading
           eyebrow="Why It Matters"

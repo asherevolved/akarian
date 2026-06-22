@@ -150,11 +150,9 @@ export default function Hero() {
           </h1>
 
           <p data-hero className="t-lead mb-8 max-w-xl font-sans text-ivory font-medium [text-shadow:0_1px_12px_rgba(0,0,0,0.35)]">
-            Between 1 and 5, your child is learning to live in their own body.
-            To feel. To regulate. To move through the world with ease.
-            Consciously designed materials, small groups, deep sensory play.
-            Not enrichment. Nourishment. The foundation for a lifetime of
-            confidence.
+            The years between one and five are not preparation for learning.
+            They are when learning becomes possible. Before the nervous system
+            learns to regulate, nothing else can take root.
           </p>
 
           <figure data-hero className="mb-9 max-w-lg">

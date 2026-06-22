@@ -29,7 +29,7 @@
    ───────────────────────────────────────────── */
 :root {
   /* Fluid type — one smooth scale 360px → 1440px */
-  --fluid-display: clamp(2.85rem, 1.05rem + 7.7vw, 5.5rem);
+  --fluid-display: clamp(2.2rem, 0.9rem + 5.8vw, 4.2rem);
   --fluid-h2:      clamp(1.9rem, 1.15rem + 3.3vw, 3.1rem);
   --fluid-h3:      clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
   --fluid-lead:    clamp(1.05rem, 0.98rem + 0.5vw, 1.2rem);

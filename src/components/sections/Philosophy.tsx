@@ -10,7 +10,7 @@ export default function Philosophy() {
   const quoteRef = useReveal<HTMLDivElement>({ selector: null, start: "top 88%" });
 
   return (
-    <section id="philosophy" className="section-padding bg-ivory">
+    <section id="philosophy" className="section-padding bg-ivory" style={{ paddingBottom: 0 }}>
       <div className="container-wide">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left — the argument */}
@@ -69,11 +69,10 @@ export default function Philosophy() {
         {/* Pull quote */}
         <div
           ref={quoteRef}
-          className="relative mt-16 overflow-hidden bg-deep-olive p-8 text-center grain arch sm:mt-24 sm:p-12 md:p-16"
+          className="relative mt-6 overflow-hidden bg-deep-olive px-8 py-4 text-center grain rounded-2xl"
         >
-          <p className="relative z-10 mx-auto max-w-3xl font-serif text-xl italic leading-relaxed text-ivory/90 sm:text-2xl md:text-3xl">
-            &ldquo;We are not here to shape children into something they are not.
-            We are here to nourish everything they already are.&rdquo;
+          <p className="relative z-10 mx-auto font-serif text-base italic leading-none text-ivory/90 whitespace-nowrap sm:text-lg">
+            &ldquo;We are not here to shape children into something they are not. We are here to nourish everything they already are.&rdquo;
           </p>
         </div>
       </div>
