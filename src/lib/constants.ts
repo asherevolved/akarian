@@ -146,21 +146,25 @@ export const PILLARS: {
 ];
 
 export const DISCOVERY_INCLUDES = [
-  "24 sessions across 12 weeks, two per week",
-  "Small groups of four to five children",
-  "All eight sensory pathways covered",
-  "Plant-based, earth-driven materials only",
-  "Hosted inside your child's own preschool",
-  "Select partner preschools only",
+  "A 12-Week Sensory Integration Residency",
+  "Small groups for deeper engagement and regulation",
+  "All eight sensory systems covered",
+  "Curated materials for neurodevelopmental growth",
+  "Embodied learning experiences for brain-body integration",
+  "Hosted within Akarian Partner Preschools",
+  "Limited seats per cohort",
+  "An expert-led parent immersion experience",
 ];
 
 export const CORE_INCLUDES = [
-  "Led by founder Akshatha, every session",
-  "One-on-one, or siblings together",
-  "12 weeks, entirely in your own home",
-  "Built around your child's pace and profile",
-  "Your home becomes the sensory classroom",
-  "Limited to one or two families at a time",
+  "Delivered by an EISE Expert in the comfort of your home",
+  "One-to-one sessions or sibling programmes",
+  "24 immersive sessions across 12 weeks",
+  "Personalised to your child's pace and developmental profile",
+  "Curated sensory experiences for brain-body integration",
+  "Limited enrolments for deeper individual attention",
+  "All sensory materials provided for every session",
+  "Access to the Akarian Parent Circle and Expert-Led Workshop",
 ];
 
 export const APPROACH_PRINCIPLES = [

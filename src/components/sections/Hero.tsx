@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
-import StatBadge from "@/components/ui/StatBadge";
+
 import { HERO_STATS } from "@/lib/constants";
 
 const EASE = "power3.out";
@@ -149,21 +149,20 @@ export default function Hero() {
             <span className="italic text-yellow-amber">Young Ones</span>
           </h1>
 
-          <p data-hero className="t-lead mb-8 max-w-xl font-sans text-ivory font-medium [text-shadow:0_1px_12px_rgba(0,0,0,0.35)]">
-            The years between one and five are not preparation for learning.
-            They are when learning becomes possible. Before the nervous system
-            learns to regulate, nothing else can take root.
-          </p>
+          <div data-hero className="mb-8 max-w-xl space-y-3 font-sans text-ivory font-medium [text-shadow:0_1px_12px_rgba(0,0,0,0.35)]">
+            <p className="t-lead">
+              The years between one and five are when the architecture of learning is formed.
+              Before letters or numbers can take root, the nervous system must first learn to
+              regulate and interpret the world.
+            </p>
+            <p className="t-lead">
+              The sensory foundations that make learning possible are often overlooked.
+              Through neurodevelopmental experiences, we strengthen this vital bridge between
+              readiness and learning.
+            </p>
+            <p className="t-lead">Not early education. The foundation beneath it.</p>
+          </div>
 
-          <figure data-hero className="mb-9 max-w-lg">
-            <span aria-hidden className="block font-serif text-4xl leading-none text-yellow-amber/50">
-              &ldquo;
-            </span>
-            <blockquote className="-mt-3 font-serif text-lg italic leading-relaxed text-ivory/90 sm:text-xl">
-              Every child deserves to grow into the fullest, most luminous
-              version of themselves — and it begins here.
-            </blockquote>
-          </figure>
 
           <div data-hero className="mb-10 flex flex-col gap-3 xs:flex-row sm:gap-4">
             <Button href="#contact" variant="primary" id="hero-cta-primary">

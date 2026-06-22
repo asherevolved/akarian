@@ -124,7 +124,7 @@ export default function Navbar() {
             : "bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="container-wide flex items-center justify-between px-5 sm:px-6 md:px-12 py-3.5 sm:py-4">
+        <div className="container-wide flex items-center justify-between px-5 sm:px-6 md:px-12 py-1 sm:py-2 lg:py-3.5">
           {/* Logo */}
           <a
             ref={logoRef}
@@ -137,7 +137,7 @@ export default function Navbar() {
               alt="Akarian"
               width={160}
               height={44}
-              className="h-[140px] w-auto -ml-6 transition-transform duration-500 group-hover:scale-[1.03]"
+              className="h-[85px] sm:h-[110px] lg:h-[140px] w-auto -ml-6 transition-transform duration-500 group-hover:scale-[1.03]"
               priority
             />
           </a>
@@ -151,7 +151,7 @@ export default function Navbar() {
                   key={link.href}
                   href={resolveHref(link.href)}
                   aria-current={isActive ? "true" : undefined}
-                  className={`relative inline-block font-sans text-[0.8rem] uppercase tracking-[0.14em] transition-colors duration-300 opacity-0 ${
+                  className={`relative inline-block font-sans font-bold text-[0.8rem] uppercase tracking-[0.14em] transition-colors duration-300 opacity-0 ${
                     isActive ? "text-terracotta" : "text-deep-olive hover:text-terracotta"
                   }`}
                   id={`nav-${link.label.toLowerCase()}`}

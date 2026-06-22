@@ -143,7 +143,7 @@ export default function Programs() {
               </span>
               {/* Fixed-height title+intro block keeps both cards' checklists aligned */}
               <div className="lg:min-h-[10.5rem]">
-                <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-light leading-tight text-forest-green mb-3">
+                <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-bold leading-tight text-forest-green mb-3">
                   EISE Preschool Residency
                 </h3>
                 <p className="font-sans text-sm text-sage leading-relaxed">

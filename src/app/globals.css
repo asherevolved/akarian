@@ -35,7 +35,7 @@
   --fluid-lead:    clamp(1.05rem, 0.98rem + 0.5vw, 1.2rem);
 
   /* Vertical section rhythm */
-  --section-y: clamp(4.5rem, 2.5rem + 8vw, 9rem);
+  --section-y: clamp(3rem, 1.5rem + 5vw, 5.5rem);
 
   /* Fixed-nav offset for in-page anchors */
   --nav-offset: 6.5rem;
