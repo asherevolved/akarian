@@ -5,7 +5,7 @@ export const NAV_LINKS = [
   { label: "Pillars", href: "#pillars" },
   { label: "Programs", href: "#programs" },
   { label: "Approach", href: "#approach" },
-  { label: "Founder", href: "#founder" },
+  { label: "Team", href: "#founder" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
