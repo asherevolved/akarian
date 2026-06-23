@@ -71,9 +71,9 @@ export default function Founder() {
         />
 
         {/* Founder row — arch photo left, text right */}
-        <div ref={founderRef} className="flex flex-col sm:flex-row items-center sm:items-start gap-10 mb-16 sm:mb-20 max-w-4xl mx-auto">
+        <div ref={founderRef} className="flex flex-col sm:flex-row items-center sm:items-start gap-14 mb-20 sm:mb-28 max-w-5xl mx-auto">
           {/* Arch frame */}
-          <div className="shrink-0 relative h-72 w-52 sm:h-80 sm:w-56 arch-top overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.22)]">
+          <div className="shrink-0 relative h-96 w-64 sm:h-[28rem] sm:w-72 arch-top overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.22)]">
             <Image
               src="/founder-photo.jpg"
               alt="Akshatha"
@@ -85,18 +85,18 @@ export default function Founder() {
           </div>
           {/* Text */}
           <div className="text-center sm:text-left pt-2">
-            <p className="font-serif text-4xl sm:text-5xl font-bold text-forest-green">Akshatha</p>
+            <p className="font-serif text-5xl sm:text-6xl font-bold text-forest-green">Akshatha</p>
             <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-deep-olive mt-2">Founder &amp; Managing Director</p>
-            <p className="font-sans text-sm italic text-deep-olive/60 mt-1">Toddler Development Specialist &nbsp;|&nbsp; EISE Instructor</p>
+            <p className="font-sans text-base italic text-deep-olive mt-1">Toddler Development Specialist &nbsp;|&nbsp; EISE Instructor</p>
             <div className="mt-1 mb-5 h-px w-10 bg-golden-sand/50 mx-auto sm:mx-0" />
             <div className="space-y-3 max-w-md">
-              <p className="font-sans text-sm text-sage leading-relaxed">
+              <p className="font-sans text-base text-deep-olive leading-relaxed">
                 Akshatha&apos;s journey spans both early childhood education and healthcare environments, giving her a unique perspective on child development.
               </p>
-              <p className="font-sans text-sm text-sage leading-relaxed">
+              <p className="font-sans text-base text-deep-olive leading-relaxed">
                 Through years of working closely with children, families and developmental professionals, she recognised a critical gap between academic readiness and developmental readiness.
               </p>
-              <p className="font-sans text-sm text-sage leading-relaxed">
+              <p className="font-sans text-base text-deep-olive leading-relaxed">
                 This insight led to the creation of Akarian — a platform dedicated to building the sensory foundations that support learning, regulation and lifelong growth.
               </p>
             </div>
@@ -104,10 +104,10 @@ export default function Founder() {
         </div>
 
         {/* Team row — 3 circle cards */}
-        <div ref={teamRef} className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-4xl mx-auto">
+        <div ref={teamRef} className="grid grid-cols-1 sm:grid-cols-3 gap-14 max-w-6xl mx-auto">
           {TEAM.map((member) => (
             <div key={member.name} className="team-card flex flex-col items-center text-center gap-4">
-              <div className={`relative h-36 w-36 sm:h-40 sm:w-40 rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
+              <div className={`relative h-48 w-48 sm:h-56 sm:w-56 rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -117,11 +117,11 @@ export default function Founder() {
                 />
               </div>
               <div>
-                <p className="font-serif text-xl font-bold text-forest-green">{member.name}</p>
-                <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-deep-olive mt-1">{member.role}</p>
-                <p className="font-sans text-[0.7rem] italic text-deep-olive/60 mt-0.5">{member.sub}</p>
+                <p className="font-serif text-3xl font-bold text-forest-green">{member.name}</p>
+                <p className="font-sans text-sm font-bold uppercase tracking-[0.16em] text-deep-olive mt-1">{member.role}</p>
+                <p className="font-sans text-base italic text-deep-olive mt-0.5">{member.sub}</p>
                 <div className="mt-2 mb-3 h-px w-8 bg-golden-sand/50 mx-auto" />
-                <p className="font-sans text-[0.78rem] text-sage leading-relaxed max-w-[14rem] mx-auto">{member.bio}</p>
+                <p className="font-sans text-base text-deep-olive leading-relaxed max-w-[18rem] mx-auto">{member.bio}</p>
               </div>
             </div>
           ))}

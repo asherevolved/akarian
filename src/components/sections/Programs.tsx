@@ -146,7 +146,7 @@ export default function Programs() {
                 <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-bold leading-tight text-forest-green mb-3">
                   EISE Preschool Residency
                 </h3>
-                <p className="font-sans text-sm text-sage leading-relaxed">
+                <p className="font-sans text-base text-deep-olive leading-relaxed">
                   Sensory development for children in a space they already know —
                   Early Immersive Sensory Engagement, brought into your child&apos;s
                   own preschool.
@@ -155,12 +155,12 @@ export default function Programs() {
 
               <div className="my-7 h-px bg-golden-sand/25" />
 
-              <p className="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-golden-sand mb-5">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-deep-olive mb-5">
                 What&apos;s included
               </p>
               <ul className="space-y-3.5 mb-9 flex-1">
                 {DISCOVERY_INCLUDES.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 font-sans text-sm text-deep-olive leading-relaxed">
+                  <li key={i} className="flex items-start gap-3 font-sans text-base text-deep-olive leading-relaxed">
                     <Check />
                     <span>{item}</span>
                   </li>
@@ -179,10 +179,10 @@ export default function Programs() {
                 </span>
               </div>
               <div className="relative z-10 lg:min-h-[10.5rem]">
-                <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-light leading-tight text-ivory mb-3">
+                <h3 className="font-serif text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-bold leading-tight text-ivory mb-3">
                   EISE In-Home Core Program
                 </h3>
-                <p className="font-sans text-sm text-ivory/65 leading-relaxed">
+                <p className="font-sans text-base text-ivory/90 leading-relaxed">
                   The most personal sensory education — at your home, with your
                   child&apos;s own facilitator.
                 </p>
@@ -190,12 +190,12 @@ export default function Programs() {
 
               <div className="relative z-10 my-7 h-px bg-ivory/15" />
 
-              <p className="relative z-10 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ivory/45 mb-5">
+              <p className="relative z-10 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-ivory/80 mb-5">
                 What&apos;s included
               </p>
               <ul className="relative z-10 space-y-3.5 mb-9 flex-1">
                 {CORE_INCLUDES.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 font-sans text-sm text-ivory/80 leading-relaxed">
+                  <li key={i} className="flex items-start gap-3 font-sans text-base text-ivory leading-relaxed">
                     <Check tone="amber" />
                     <span>{item}</span>
                   </li>

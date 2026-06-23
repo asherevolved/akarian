@@ -75,7 +75,7 @@ export default function Approach() {
         />
 
         <div className="mb-12 text-center">
-          <p className="font-sans text-sm text-sage leading-relaxed max-w-2xl mx-auto">
+          <p className="font-sans text-base sm:text-lg text-deep-olive leading-relaxed max-w-2xl mx-auto">
             AKARIAN sessions are pre-school mapped and home-based by design — not
             for convenience, but because a child&apos;s world is most open in the
             environment they know and trust deeply. The home is not a backdrop. It
@@ -83,7 +83,7 @@ export default function Approach() {
           </p>
         </div>
 
-        <div ref={gridRef} className="mx-auto flex max-w-3xl flex-col gap-4 sm:gap-5">
+        <div ref={gridRef} className="mx-auto flex max-w-4xl flex-col gap-5 sm:gap-7">
           {APPROACH_PRINCIPLES.map((principle, i) => (
             <Card
               key={principle.title}
@@ -92,18 +92,18 @@ export default function Approach() {
               className="approach-card grid grid-cols-[auto_1fr] items-start gap-5 sm:gap-7"
             >
               <div className="flex items-center gap-3 sm:gap-4">
-                <span className="font-serif nums text-2xl text-terracotta sm:text-3xl">
+                <span className="font-serif nums text-3xl text-terracotta sm:text-4xl">
                   {i + 1}
                 </span>
-                <span className="principle-icon flex h-10 w-10 items-center justify-center arch-top rounded-b-md border border-golden-sand/30 bg-ivory text-terracotta will-change-transform sm:h-12 sm:w-12">
-                  <Icon name={PRINCIPLE_ICONS[i]} className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="principle-icon flex h-12 w-12 items-center justify-center arch-top rounded-b-md border border-golden-sand/30 bg-ivory text-terracotta will-change-transform sm:h-14 sm:w-14">
+                  <Icon name={PRINCIPLE_ICONS[i]} className="h-6 w-6 sm:h-7 sm:w-7" />
                 </span>
               </div>
               <div>
-                <h3 className="font-serif text-lg text-forest-green sm:text-xl">
+                <h3 className="font-serif text-xl text-forest-green sm:text-2xl">
                   {principle.title}
                 </h3>
-                <p className="mt-2 font-sans text-sm leading-relaxed text-sage">
+                <p className="mt-2 font-sans text-base leading-relaxed text-deep-olive">
                   {principle.description}
                 </p>
               </div>
