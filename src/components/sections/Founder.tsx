@@ -52,10 +52,30 @@ export default function Founder() {
       const cards = teamRef.current?.querySelectorAll(".team-card");
       if (cards) {
         gsap.fromTo(cards,
-          { opacity: 0, y: 36 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: E_OUT,
-            scrollTrigger: { trigger: teamRef.current, start: "top 88%", once: true } }
+          { opacity: 0, y: 48 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: E_OUT,
+            scrollTrigger: { trigger: teamRef.current, start: "top 85%", once: true } }
         );
+
+        cards.forEach((card) => {
+          const avatar = card.querySelector(".team-avatar");
+          if (avatar) {
+            gsap.fromTo(avatar,
+              { scale: 0.65, opacity: 0 },
+              { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)",
+                scrollTrigger: { trigger: card, start: "top 88%", once: true } }
+            );
+          }
+
+          const textEls = card.querySelectorAll(".team-text > *");
+          if (textEls.length) {
+            gsap.fromTo(textEls,
+              { opacity: 0, y: 16 },
+              { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: E_OUT, delay: 0.2,
+                scrollTrigger: { trigger: card, start: "top 88%", once: true } }
+            );
+          }
+        });
       }
     }, sectionRef);
     return () => ctx.revert();
@@ -107,16 +127,16 @@ export default function Founder() {
         <div ref={teamRef} className="grid grid-cols-1 sm:grid-cols-3 gap-14 max-w-6xl mx-auto">
           {TEAM.map((member) => (
             <div key={member.name} className="team-card flex flex-col items-center text-center gap-4">
-              <div className={`relative h-48 w-48 sm:h-56 sm:w-56 rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
+              <div className={`team-avatar relative h-48 w-48 sm:h-56 sm:w-56 rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   className={`object-cover ${member.position}`}
-                  sizes="160px"
+                  sizes="224px"
                 />
               </div>
-              <div>
+              <div className="team-text">
                 <p className="font-serif text-3xl font-bold text-forest-green">{member.name}</p>
                 <p className="font-sans text-sm font-bold uppercase tracking-[0.16em] text-deep-olive mt-1">{member.role}</p>
                 <p className="font-sans text-base italic text-deep-olive mt-0.5">{member.sub}</p>

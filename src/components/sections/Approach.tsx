@@ -100,10 +100,10 @@ export default function Approach() {
                 </span>
               </div>
               <div>
-                <h3 className="font-serif text-xl text-forest-green sm:text-2xl">
+                <h3 className="font-serif text-2xl font-bold text-forest-green sm:text-3xl">
                   {principle.title}
                 </h3>
-                <p className="mt-2 font-sans text-base leading-relaxed text-deep-olive">
+                <p className="mt-2 font-sans text-base font-medium leading-relaxed text-deep-olive">
                   {principle.description}
                 </p>
               </div>
