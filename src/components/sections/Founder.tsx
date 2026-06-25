@@ -21,7 +21,7 @@ const TEAM = [
   },
   {
     name: "Kamya Ravi",
-    role: "Chief Academic Officer",
+    role: "Associate Director - Academics",
     sub: "Academic & Program Operations",
     image: "/team-kamya.png",
     position: "object-center",
