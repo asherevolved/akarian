@@ -37,6 +37,14 @@ const TEAM = [
   },
 ];
 
+// Per-member overrides (only set when different from defaults)
+const MEMBER_OVERRIDES: Record<string, { nameSize?: string; avatarSize?: string }> = {
+  Akshatha: {
+    nameSize: "text-2xl",
+    avatarSize: "h-40 w-40 sm:h-44 sm:w-44",
+  },
+};
+
 export default function Founder() {
   const sectionRef = useRef<HTMLElement>(null);
   const founderRef = useRef<HTMLDivElement>(null);
@@ -125,26 +133,31 @@ export default function Founder() {
 
         {/* Team row — 3 circle cards */}
         <div ref={teamRef} className="grid grid-cols-1 sm:grid-cols-3 gap-14 max-w-6xl mx-auto">
-          {TEAM.map((member) => (
-            <div key={member.name} className="team-card flex flex-col items-center text-center gap-4">
-              <div className={`team-avatar relative h-48 w-48 sm:h-56 sm:w-56 rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className={`object-cover ${member.position}`}
-                  sizes="224px"
-                />
+          {TEAM.map((member) => {
+            const overrides = MEMBER_OVERRIDES[member.name] ?? {};
+            const nameSize = overrides.nameSize ?? "text-3xl";
+            const avatarSize = overrides.avatarSize ?? "h-48 w-48 sm:h-56 sm:w-56";
+            return (
+              <div key={member.name} className="team-card flex flex-col items-center text-center gap-4">
+                <div className={`team-avatar relative ${avatarSize} rounded-full overflow-hidden border-2 border-golden-sand/30 shadow-[0_8px_32px_-8px_rgba(47,59,46,0.18)]`}>
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className={`object-cover ${member.position}`}
+                    sizes="224px"
+                  />
+                </div>
+                <div className="team-text">
+                  <p className={`font-serif ${nameSize} font-bold text-forest-green`}>{member.name}</p>
+                  <p className="font-sans text-sm font-bold uppercase tracking-[0.16em] text-deep-olive mt-1">{member.role}</p>
+                  <p className="font-sans text-base italic text-deep-olive mt-0.5">{member.sub}</p>
+                  <div className="mt-2 mb-3 h-px w-8 bg-golden-sand/50 mx-auto" />
+                  <p className="font-sans text-base text-deep-olive leading-relaxed max-w-[18rem] mx-auto">{member.bio}</p>
+                </div>
               </div>
-              <div className="team-text">
-                <p className="font-serif text-3xl font-bold text-forest-green">{member.name}</p>
-                <p className="font-sans text-sm font-bold uppercase tracking-[0.16em] text-deep-olive mt-1">{member.role}</p>
-                <p className="font-sans text-base italic text-deep-olive mt-0.5">{member.sub}</p>
-                <div className="mt-2 mb-3 h-px w-8 bg-golden-sand/50 mx-auto" />
-                <p className="font-sans text-base text-deep-olive leading-relaxed max-w-[18rem] mx-auto">{member.bio}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
