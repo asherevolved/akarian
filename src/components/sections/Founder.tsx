@@ -40,8 +40,8 @@ const TEAM = [
 // Per-member overrides (only set when different from defaults)
 const MEMBER_OVERRIDES: Record<string, { nameSize?: string; avatarSize?: string }> = {
   Akshatha: {
-    nameSize: "text-2xl",
-    avatarSize: "h-40 w-40 sm:h-44 sm:w-44",
+    nameSize: "text-xl",
+    avatarSize: "h-32 w-32 sm:h-36 sm:w-36",
   },
 };
 
@@ -101,7 +101,7 @@ export default function Founder() {
         {/* Founder row — arch photo left, text right */}
         <div ref={founderRef} className="flex flex-col sm:flex-row items-center sm:items-start gap-14 mb-20 sm:mb-28 max-w-5xl mx-auto">
           {/* Arch frame */}
-          <div className="shrink-0 relative h-96 w-64 sm:h-[28rem] sm:w-72 arch-top overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.22)]">
+          <div className="shrink-0 relative h-72 w-52 sm:h-80 sm:w-60 arch-top overflow-hidden border border-golden-sand/30 shadow-[0_24px_64px_-16px_rgba(47,59,46,0.22)]">
             <Image
               src="/founder-photo.jpg"
               alt="Akshatha"
@@ -113,7 +113,7 @@ export default function Founder() {
           </div>
           {/* Text */}
           <div className="text-center sm:text-left pt-2">
-            <p className="font-serif text-5xl sm:text-6xl font-bold text-forest-green">Akshatha</p>
+            <p className="font-serif text-3xl sm:text-4xl font-bold text-forest-green">Akshatha</p>
             <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-deep-olive mt-2">Founder &amp; Managing Director</p>
             <p className="font-sans text-base italic text-deep-olive mt-1">Toddler Development Specialist &nbsp;|&nbsp; EISE Instructor</p>
             <div className="mt-1 mb-5 h-px w-10 bg-golden-sand/50 mx-auto sm:mx-0" />
